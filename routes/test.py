@@ -1,12 +1,12 @@
 from quart import Blueprint
-from asyncio import sleep, run
+from asyncio import sleep
 
 from helpers.queue import jobQueue
 
 test = Blueprint("test", __name__)
 
 
-# doesn't work, but should
+# doesn't work
 @jobQueue.job
 async def testJob():
 	print(1)
@@ -22,21 +22,16 @@ async def testRoute():
 	return "job queued"
 
 
-# does work, but is cumbersome (and probably shouldn't work)
-async def testInnerAsync():
+# does work
+async def testJobWorking():
 	print(1)
 	await sleep(10)
 	print(2)
 
 
-@jobQueue.job
-def testSync():
-	run(testInnerAsync())
-
-
 @test.route("/working")
 async def testRouteWorking():
 	print("starting")
-	testSync.enqueue()
+	jobQueue.queue.enqueue(testJobWorking)
 	print("queued")
 	return "job queued"
