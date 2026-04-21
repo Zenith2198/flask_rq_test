@@ -20,9 +20,10 @@ The last two steps will be automated in the actual project, but I haven't done t
 1. Ping the server at `/test` to trigger the test route.
 2. Observe in the output for the server that the request was received.
 3. Observe in the output for the RQ worker that the job was queued, however no output was printed, and the job immediately returned the Coroutine instead of executing the Coroutine.
+4. (Optional) Ping the server at `/test/working` to see what should happen.
 
 # Important files
-- [main.py](main.py)
-- [test.py](routes/test.py)
-- [app.py](app.py)
-- [queue.py](helpers/queue.py)
+- [main.py](main.py) - Entry point
+- [test.py](routes/test.py) - Route for testing
+- [app.py](app.py) - App factory
+- [queue.py](helpers/queue.py) - RQ initialization
