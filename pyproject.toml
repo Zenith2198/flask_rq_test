@@ -1,0 +1,22 @@
+[project]
+name = "flask_rq_test"
+version = "0.1.0"
+description = "Minimal repro for debugging flask_rq issues"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+	"flask-rq>=0.3.3",
+	"hypercorn>=0.18.0",
+	"python-dotenv>=1.2.2",
+	"quart>=0.20.0",
+]
+
+[dependency-groups]
+dev = ["ruff>=0.15.7"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.format]
+indent-style = "tab"
+line-ending = "lf"
